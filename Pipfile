@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+aiohttp = "*"
+dynamodb-json = "*"
+typing-extensions = "*"
+joblib = "*"
+tabulate = "*"
+
+[dev-packages]
+pipenv = "*"
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+package = "bash -c 'pipenv run pip install -r <(pipenv requirements) --target _build/dependencies && cd _build/dependencies && zip -r ../package.zip . && cd ../../src && zip -gr ../_build/package.zip .'"
+deploy = "bash -c 'cd terraform && terraform apply'"
